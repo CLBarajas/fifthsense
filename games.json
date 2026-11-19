@@ -5,6 +5,13 @@
   "rev": "fork/rochester-ny",
   "games": [
     {
+      "slug": "2026-11-18-sheet-b",
+      "run": "rcc-b-1118-v2",
+      "date": "2026-11-18",
+      "league": "Wednesday competitive",
+      "note": "A six-end game."
+    },
+    {
       "slug": "2026-11-04-sheet-a",
       "run": "rcc-1104-v17",
       "date": "2026-11-04",
