@@ -11,6 +11,7 @@ clone's `out/<run>/`, then writes, beside this script:
     <slug>/index.html   the viewer page, booted view-only
     <slug>/timeline.json
     .nojekyll           Pages serves the files as they are
+    CNAME               the site's own domain, when games.json names one
 
 Every game page sets window.CHART = {mode: "view"}, the hosted service's
 view-only link: no editor, no save button, and nothing is ever POSTed.
@@ -271,6 +272,14 @@ def main():
     (HERE / "index.html").write_text(
         index_page(cards, site_name, cfg.get("tagline", ""), rev_short, dt.date.today()))
     (HERE / ".nojekyll").write_text("")
+    # GitHub Pages reads the site's own domain from a CNAME file on the
+    # published branch. Written here so a rebuild can't drop it; with no
+    # "domain" in games.json the site stays at <user>.github.io/<repo>/.
+    domain = (cfg.get("domain") or "").strip()
+    if domain:
+        (HERE / "CNAME").write_text(domain + "\n")
+    else:
+        (HERE / "CNAME").unlink(missing_ok=True)
 
     leaks = [p for p in HERE.rglob("*") if p.is_file() and ".git" not in p.parts
              and p.suffix in (".html", ".json") and b"/Users/" in p.read_bytes()]
