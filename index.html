@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FifthSense · Rock-by-rock game tracker, via RCC&#x27;s live streams</title>
+<meta name="description" content="FifthSense: shot-by-shot charts of games at Rochester Curling Club, read by computer from the club's sheet streams.">
+<meta name="generator" content="curling_stats rochester-ny 703ea6b">
+<style>
+@font-face { font-family: "Source Sans 3"; font-weight: 200 900; font-display: swap;
+             src: url("viewer/source-sans-3.woff2") format("woff2"); }
+:root {
+  --bg: #f3f0e7; --panel: #fffdf7; --ink: #16130c; --muted: #6d6455; --rule: #ddd5c3;
+  --teal: #3f8577; --purple: #6a5a94; --red: #d13438; --yellow: #4d8ef0;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #17140f; --panel: #211c14; --ink: #f2ece0; --muted: #a2977f; --rule: #3a3226;
+           --teal: #6cbcac; --purple: #a596cf; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink);
+       font: 17px/1.5 "Source Sans 3", system-ui, -apple-system, sans-serif;
+       -webkit-text-size-adjust: 100%; }
+main { max-width: 680px; margin: 0 auto;
+       padding: max(28px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right))
+                48px max(16px, env(safe-area-inset-left)); }
+h1 { font-size: 30px; line-height: 1.15; margin: 0 0 12px; letter-spacing: -.01em; }
+h1 { font-size: 36px; margin-bottom: 4px; }
+.tagline { font-size: 18px; font-weight: 600; color: var(--teal); margin: 0 0 18px; }
+h2 { font-size: 15px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
+     color: var(--muted); margin: 36px 0 8px; }
+p { margin: 0 0 12px; }
+a { color: var(--teal); }
+.lede { font-size: 19px; }
+ul.games { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 12px; }
+a.game { display: block; text-decoration: none; color: inherit; background: var(--panel);
+         border: 1px solid var(--rule); border-left: 4px solid var(--purple); border-radius: 10px;
+         padding: 14px 16px; }
+a.game:hover, a.game:focus-visible { border-left-color: var(--teal); outline: none;
+         box-shadow: 0 0 0 2px var(--teal); }
+a.game p { margin: 0; }
+.when { font-size: 14px; color: var(--muted); }
+.teams { font-size: 21px; font-weight: 700; margin: 2px 0 !important; }
+.team { white-space: nowrap; }
+.v { font-weight: 400; color: var(--muted); padding: 0 2px; }
+.stone { display: inline-block; width: .62em; height: .62em; border-radius: 50%;
+         margin-right: .3em; vertical-align: .06em; background: var(--stone, var(--muted));
+         box-shadow: 0 0 0 2px var(--panel), 0 0 0 3px var(--rule); }
+.stone.red { --stone: var(--red); }
+.soon { font-size: 14px; font-weight: 400; color: var(--muted); white-space: nowrap; }
+.stats { font-size: 15px; }
+.note { font-size: 14px; color: var(--muted); margin-top: 4px !important; }
+ul.how { padding-left: 20px; margin: 0; }
+ul.how li { margin-bottom: 6px; }
+footer { margin-top: 40px; padding-top: 14px; border-top: 1px solid var(--rule);
+         font-size: 14px; color: var(--muted); }
+footer a { color: inherit; }
+</style>
+<main>
+  <h1>FifthSense</h1>
+  <p class="tagline">Rock-by-rock game tracker, via RCC&#x27;s live streams</p>
+  <p class="lede">A computer watched these games on Rochester Curling Club's sheet streams and charted every rock it could find: where each stone stopped, when it was thrown, and what kind of shot it was.</p>
+  <p>Pick a game. Step through it a rock at a time, with the stream beside it.</p>
+
+  <ul class="games">
+    <li><a class="game" href="2026-11-04-sheet-a/">
+      <p class="when">Wed Nov 4 · Sheet A · Wednesday competitive</p>
+      <p class="teams"><span class="team"><span class="stone red"></span>Bauman</span> <span class="v">v</span> <span class="team"><span class="stone yellow" style="--stone:#4d8ef0"></span>Pulli</span> </p>
+      <p class="stats">8 ends · 123 of 128 rocks found</p>
+      <p class="note">The stream stops five rocks before the end.</p>
+    </a></li>
+    <li><a class="game" href="2026-11-11-sheet-c/">
+      <p class="when">Wed Nov 11 · Sheet C · Wednesday competitive</p>
+      <p class="teams"><span class="team"><span class="stone red"></span>Lindstrom</span> <span class="v">v</span> <span class="team"><span class="stone yellow" style="--stone:#4d8ef0"></span>Bauman</span> </p>
+      <p class="stats">8 ends · 127 of 128 rocks found</p>
+      
+    </a></li>
+    <li><a class="game" href="2026-11-09-sheet-d/">
+      <p class="when">Mon Nov 9 · Sheet D · Monday open</p>
+      <p class="teams"><span class="team"><span class="stone red"></span>Red</span> <span class="v">v</span> <span class="team"><span class="stone yellow" style="--stone:#4d8ef0"></span>Blue</span> <span class="soon">team names to come</span></p>
+      <p class="stats">7 ends · 112 of 112 rocks found</p>
+      <p class="note">A seven-end game.</p>
+    </a></li>
+    <li><a class="game" href="2026-10-28-sheet-b/">
+      <p class="when">Wed Oct 28 · Sheet B · Wednesday competitive</p>
+      <p class="teams"><span class="team"><span class="stone red"></span>Maxon</span> <span class="v">v</span> <span class="team"><span class="stone yellow" style="--stone:#4d8ef0"></span>Bauman</span> </p>
+      <p class="stats">8 ends · 127 of 128 rocks found</p>
+      <p class="note">An older stream layout. The last rock was never thrown: the game was conceded.</p>
+    </a></li>
+    <li><a class="game" href="2026-10-21-sheet-a/">
+      <p class="when">Wed Oct 21 · Sheet A · Wednesday competitive</p>
+      <p class="teams"><span class="team"><span class="stone red"></span>Bauman</span> <span class="v">v</span> <span class="team"><span class="stone yellow" style="--stone:#4d8ef0"></span>Calabrese</span> </p>
+      <p class="stats">6 ends · 96 of 96 rocks found</p>
+      
+    </a></li>
+  </ul>
+
+  <h2>Reading a game</h2>
+  <ul class="how">
+    <li>The house shows every stone in play after the rock you're on, and the path of the rock that was thrown.</li>
+    <li>Step with the arrow keys or the arrows under the video. On a phone, tap ‹ and ›, or swipe across the house.</li>
+    <li>The video jumps to each rock as you step.</li>
+    <li>Change ends from the menu at the top. On a phone, tap the rock's name above the house.</li>
+    <li>A "?" is a rock the computer missed.</li>
+    <li>Report gives the score by end and each team's thinking time.</li>
+  </ul>
+
+  <h2>How good is it?</h2>
+  <p>Close, not perfect. Stones in the house are placed from the overhead cameras. Guards are placed from the end cameras, which is harder: some are a foot or more out. Shot types are the computer's best guess.</p>
+  <p>Nothing here has been corrected by hand.</p>
+
+  <h2>Where it comes from</h2>
+  <p>FifthSense is built on <a href="https://github.com/wdimmit/curling_stats">curling_stats</a>, the charting software Will Dimmit wrote for Granite Curling Club in Seattle and made public. A Rochester Curling Club member adapted it to the club's streams. This isn't an official club site.</p>
+
+  <footer>
+    Built on <a href="https://github.com/wdimmit/curling_stats">curling_stats</a> by Will Dimmit.
+    Code: <a href="https://github.com/CLBarajas/curling_stats/tree/rochester-ny">CLBarajas/curling_stats, branch rochester-ny</a>.
+    Built Nov 18, 2026.
+  </footer>
+</main>
+</html>

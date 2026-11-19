@@ -1,0 +1,46 @@
+{
+  "site_name": "FifthSense",
+  "tagline": "Rock-by-rock game tracker, via RCC's live streams",
+  "rev": "fork/rochester-ny",
+  "games": [
+    {
+      "slug": "2026-11-04-sheet-a",
+      "run": "rcc-1104-v17",
+      "date": "2026-11-04",
+      "league": "Wednesday competitive",
+      "note": "The stream stops five rocks before the end."
+    },
+    {
+      "slug": "2026-11-11-sheet-c",
+      "run": "rcc-c-1111-v11",
+      "date": "2026-11-11",
+      "league": "Wednesday competitive",
+      "note": ""
+    },
+    {
+      "slug": "2026-11-09-sheet-d",
+      "run": "rcc-d-1109-v10",
+      "date": "2026-11-09",
+      "league": "Monday open",
+      "note": "A seven-end game.",
+      "teams": {
+        "red": null,
+        "yellow": null
+      }
+    },
+    {
+      "slug": "2026-10-28-sheet-b",
+      "run": "rcc-b-1028-v8",
+      "date": "2026-10-28",
+      "league": "Wednesday competitive",
+      "note": "An older stream layout. The last rock was never thrown: the game was conceded."
+    },
+    {
+      "slug": "2026-10-21-sheet-a",
+      "run": "rcc-a-1021-v1",
+      "date": "2026-10-21",
+      "league": "Wednesday competitive",
+      "note": ""
+    }
+  ]
+}

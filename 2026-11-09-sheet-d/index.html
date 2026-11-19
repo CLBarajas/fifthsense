@@ -1,0 +1,29 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Red v Blue, Sheet D, Nov 9 · FifthSense</title>
+<meta name="generator" content="curling_stats rochester-ny 703ea6b, run rcc-d-1109-v10">
+<link rel="stylesheet" href="../viewer/style.css">
+<style>body[data-mode="view"] #houseCard > .muted { display: none; }</style>
+
+<!-- The page is built by app.js. Everything the stylesheet selects on -- the
+     ids, the classes, and the body[data-*] attributes that are this layout's
+     state machine -- is rendered from frontend/viewer/, not written here.
+
+     The comment below is the injection anchor: the service replaces it with
+     the window.CHART that says whether this link edits, views or reviews. It
+     is a comment rather than the script tag because a tag is markup a future
+     tool might legitimately reshape, and a miss here is silent in the worst
+     direction -- a view-only link that boots editable. See
+     curling_score.viewer.boot_page. -->
+<div id="root"></div>
+<script>
+window.CHART = {"mode": "view", "slug": "2026-11-09-sheet-d"};
+window.SITE = {"name": "FifthSense", "read_only": true};
+new MutationObserver(function () {
+  document.querySelectorAll('h1 a[href="/games"]').forEach(function (a) {
+    a.setAttribute("href", "../"); a.title = "All charted games";
+  });
+}).observe(document.documentElement, { childList: true, subtree: true });
+</script>
+<script src="../viewer/app.js"></script>
