@@ -2,7 +2,7 @@
   "site_name": "FifthSense",
   "tagline": "Rock-by-rock game tracker, via RCC’s live streams",
   "domain": "fifthsense.barajas.io",
-  "rev": "fork/rochester-ny",
+  "rev": "origin/rochester-ny",
   "games": [
     {
       "slug": "2026-11-18-sheet-b",
