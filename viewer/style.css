@@ -174,17 +174,47 @@ label.chk { display:flex; gap:6px; align-items:center; cursor:pointer;
 .video { position:relative; width:100%; aspect-ratio:16/9; background:#000;
          border-radius:8px; overflow:hidden; }
 .video iframe, .video > div { width:100%; height:100%; border:0; }
+/* The page's own <video>, where `serve` hands it the game's file to play in
+   place of the YouTube player (runtime/player.mjs), and its controls: along
+   the bottom, and only while the pointer is moving over the picture (.on).
+   A jump or a pause draws nothing, which is the whole point of it. */
+.video video { display:block; width:100%; height:100%; object-fit:contain;
+               background:#000; cursor:pointer; }
+.video > div.vbar { position:absolute; left:0; right:0; bottom:0; height:auto;
+                    display:flex; align-items:center; gap:10px;
+                    padding:22px 12px 8px; color:#fff; font-size:12px;
+                    font-variant-numeric:tabular-nums;
+                    background:linear-gradient(transparent, rgba(0,0,0,.72));
+                    opacity:0; pointer-events:none; transition:opacity .15s; }
+.video > div.vbar.on { opacity:1; pointer-events:auto; }
+.vbar button { all:unset; cursor:pointer; padding:2px 6px; font-size:15px;
+               line-height:1; color:#fff; }
+.vbar .vscrub { flex:1; min-width:0; margin:0; accent-color:#fff; cursor:pointer; }
+.vbar .vtime { white-space:nowrap; }
 .fallback { display:grid; place-items:center; height:100%; padding:20px;
             text-align:center; color:#ddd; background:#222; font-size:13px; }
 
 /* --- shot chips -------------------------------------------------------- */
 .shots { display:flex; flex-wrap:wrap; gap:4px; margin-top:10px; }
+/* A fours end's sixteen rocks, in fours: the two leads' rocks, the seconds',
+   the thirds', the skips'. The gap inside a four closes a little and the one
+   between fours opens, so the row reads lead / second / third / skip at a
+   glance (App.jsx gives the row .by-position when the end has sixteen). */
+.shots.by-position { gap:3px; }
+.shots.by-position .shot:nth-child(4n+1):not(:first-child) { margin-left:7px; }
 .shot { width:30px; height:30px; border-radius:7px; border:1px solid var(--line);
         display:grid; place-items:center; font-size:11px; cursor:pointer;
         background:var(--panel); font-variant-numeric:tabular-nums; position:relative; }
 .shot.red { background:var(--red); color:#fff; border-color:transparent; }
 .shot.yellow { background:var(--yellow); color:#1a1a1a; border-color:transparent; }
-.shot.sel { outline:3px solid var(--accent); outline-offset:1px; }
+/* The selected rock's ring lies wholly on its own chip: 2 px of outline
+   over the border and the first pixel inside it, so it never reaches into
+   the gap between chips, however narrow (1 px in some rows), and the 1 px
+   of panel the inset shadow leaves inside it keeps the ring off the chip's
+   colour. It ran 4 px out before, over a 2-4 px gap, and lay across the
+   neighbours (2026-11-20). */
+.shot.sel { outline:2px solid var(--accent); outline-offset:-2px;
+            box-shadow:inset 0 0 0 2px var(--panel); }
 .shot.unknown { border:2px dashed var(--warn); opacity:.75; }
 .shot.graded::after { content:""; position:absolute; right:2px; bottom:2px;
                       width:5px; height:5px; border-radius:50%; background:var(--ok); }
@@ -958,6 +988,8 @@ body[data-mode="review"] #house { cursor:default; }
                      left: 0; right: 0; bottom: var(--sheet); height: var(--strip);
                      box-sizing: border-box; margin: 0; padding: 4px 8px; background: var(--bg); }
   #playCard .shots .shot { flex: 1 1 0; width: auto; min-width: 0; height: 32px; font-size: 12px; }
+  #playCard .shots.by-position { gap: 1px; }
+  #playCard .shots.by-position .shot:nth-child(4n+1):not(:first-child) { margin-left: 6px; }
   body[data-sheet="open"] #playCard .shots,
   body[data-house="edit"] #playCard .shots,
   body[data-mode="view"] #playCard .shots,
@@ -1409,7 +1441,9 @@ body[data-mode="review"] #house { cursor:default; }
    `wide` branches); each layout's block below then lays them out. */
 #figCard { grid-area: figs; }
 #lineCard { grid-area: line; }
-#playGear { display: inline-grid; place-items: center; padding: 6px 8px; color: var(--muted); }
+#playGear, #keysBtn { display: inline-grid; place-items: center; padding: 6px 8px; color: var(--muted); }
+/* No keyboard to speak of: a phone, or a touch screen with no hover. */
+@media (max-width: 640px), (hover: none) { #keysBtn { display: none; } }
 #playPrefs { position: absolute; right: 0; top: 100%; margin-top: 6px; z-index: 6;
              background: var(--panel); border: 1px solid var(--line); border-radius: 8px;
              padding: 8px 12px; box-shadow: 0 8px 24px rgb(0 0 0 / .18); }
@@ -1497,9 +1531,10 @@ body[data-mode="review"] #house { cursor:default; }
   #video { width: min(100%, calc((100vh - var(--video-k)) * 16 / 9)); min-width: 640px; margin-inline: auto; }
 
   /* The control row: the arrows round the chips, then replay and mark
-     charted; the YouTube link and the playback gear together at the right.
-     One line from about 1760 px; below that it wraps rather than run past
-     the card, the link and the gear moving down together. */
+     charted; the YouTube link, the shortcuts and the playback gear together
+     at the right, the gear last (#playPrefs hangs from the right edge).
+     It wraps rather than run past the card, the three moving down
+     together. */
   #playCard .transport { gap: 6px; row-gap: 6px; }
   #playCard .transport .tp-rock { display: flex; align-items: center; gap: 6px; flex: none; }
   #playCard .transport .shots { margin: 0; flex-wrap: nowrap; }
@@ -1638,9 +1673,13 @@ body[data-mode="review"] #house { cursor:default; }
      the left edge rather than spilling past it on both sides. */
   #transport { grid-area: tp; margin: 0; gap: 6px; flex-wrap: nowrap; justify-content: center; justify-content: safe center; }
   #transport .shots { margin: 0; gap: 2px; flex-wrap: nowrap; }
+  /* In fours here too, at no cost in width: the row is fitted to the screen
+     to the pixel, and fifteen gaps of 1px with three of 5px between the fours
+     come to the same 30px as fifteen of 2px. */
+  #transport .shots.by-position { gap: 1px; }
+  #transport .shots.by-position .shot:nth-child(4n+1):not(:first-child) { margin-left: 5px; }
   #shots .shot { width: clamp(36px, calc((100vw - 160px) / 16), 40px); height: 44px; font-size: 15px;
                  border-radius: 8px; flex: none; }
-  #shots .shot.sel { outline-offset: 2px; }
   #shots .shot.graded::after { width: 6px; height: 6px; right: 3px; bottom: 3px; }
   #replay { min-height: 44px; padding: 0 12px; white-space: nowrap; }
 
@@ -1802,7 +1841,7 @@ body[data-mode="view"] dialog.sheet #missReason,
 body[data-mode="view"] dialog.sheet #note { pointer-events: auto; opacity: 1; }
 
 /* --- the large dialogs: delivery and thinking (spec 2026-10-15) ----------- */
-#deliveryDialog, #thinkingDialog, #endDialog { padding: 0; border: 1px solid var(--line); border-radius: 12px;
+#deliveryDialog, #thinkingDialog, #endDialog, #keysDialog { padding: 0; border: 1px solid var(--line); border-radius: 12px;
   background: var(--panel); color: var(--ink); box-sizing: border-box; max-height: calc(100vh - 48px);
   overflow: hidden; }
 /* The padding lives on the wrapper, not the <dialog>: a click on the dialog element itself is the
@@ -1811,7 +1850,22 @@ body[data-mode="view"] dialog.sheet #note { pointer-events: auto; opacity: 1; }
 #deliveryDialog { width: min(1560px, calc(100vw - 64px)); }
 #thinkingDialog { width: min(920px, calc(100vw - 64px)); }
 #endDialog { width: min(1560px, calc(100vw - 64px)); }
-#deliveryDialog::backdrop, #thinkingDialog::backdrop, #endDialog::backdrop { background: rgb(20 16 10 / .55); }
+/* The keyboard's shortcuts: a group to a column where there is room. */
+#keysDialog { width: min(820px, calc(100vw - 64px)); }
+#keysDialog .kd-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                         gap: 6px 28px; }
+#keysDialog h3 { margin: 8px 0 6px; font-size: 13px; color: var(--muted); font-weight: 600;
+                 text-transform: uppercase; letter-spacing: .04em; }
+#keysDialog dl { display: block; margin: 0; }   /* the page's dl is a two-column grid */
+#keysDialog .kd-row { display: grid; grid-template-columns: 150px 1fr; gap: 10px; align-items: baseline;
+                      padding: 5px 0; border-top: 1px solid var(--line); font-size: 13px; }
+#keysDialog dt { white-space: nowrap; color: var(--muted); }
+#keysDialog dd { margin: 0; }
+#keysDialog kbd { display: inline-block; min-width: 1.4em; padding: 1px 6px; text-align: center;
+                  font: 600 12px/1.5 var(--mono, ui-monospace, monospace); color: var(--ink);
+                  background: var(--soft); border: 1px solid var(--line);
+                  border-bottom: 2px solid var(--muted); border-radius: 5px; }
+#deliveryDialog::backdrop, #thinkingDialog::backdrop, #endDialog::backdrop, #keysDialog::backdrop { background: rgb(20 16 10 / .55); }
 .dd-head { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
 .dd-head h2 { margin: 0; font-size: 16px; }
 .dd-head .grow { flex: 1 1 auto; }
