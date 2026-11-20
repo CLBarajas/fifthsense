@@ -137,7 +137,7 @@ def card(c):
     <li><a class="game" href="{c['slug']}/">
       <p class="when">{c['day']:%a %b} {c['day'].day} · Sheet {c['sheet']} · {html.escape(c['league'])}</p>
       <p class="teams">{team('red')} <span class="v">v</span> {team('yellow')} {unnamed}</p>
-      <p class="stats">{c['ends']} ends · {c['found']} of {c['slots']} rocks found</p>
+      <p class="stats">{c['ends']} ends · {c['found']} of {c['slots']} rocks tracked</p>
       {note}
     </a></li>"""
 
@@ -150,7 +150,7 @@ def index_page(cards, site_name, tagline, rev_short, built):
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{site_name} · {tagline}</title>
-<meta name="description" content="{site_name}: shot-by-shot charts of games at Rochester Curling Club, read by computer from the club's sheet streams.">
+<meta name="description" content="{site_name}: rock-by-rock charts of games at Rochester Curling Club, tracked by computer vision from the club’s live streams.">
 <meta name="generator" content="curling_stats rochester-ny {rev_short}">
 <style>
 @font-face {{ font-family: "Source Sans 3"; font-weight: 200 900; font-display: swap;
@@ -205,33 +205,34 @@ footer a {{ color: inherit; }}
 <main>
   <h1>{site_name}</h1>
   <p class="tagline">{tagline}</p>
-  <p class="lede">A computer watched these games on Rochester Curling Club's sheet streams and charted every rock it could find: where each stone stopped, when it was thrown, and what kind of shot it was.</p>
+  <p class="lede">Using computer vision models customized for Rochester Curling Club’s cameras, {site_name} finds and tracks stones from the club’s live streams. Every rock tracked is charted: where it stopped, when it was thrown, and what kind of shot it most likely was.</p>
   <p>Pick a game. Step through it a rock at a time, with the stream beside it.</p>
+  <p class="note">Want a game tracked? Get in touch with Chris Barajas.</p>
 
   <ul class="games">{items}
   </ul>
 
   <h2>Reading a game</h2>
   <ul class="how">
-    <li>The house shows every stone in play after the rock you're on, and the path of the rock that was thrown.</li>
+    <li>The house shows every stone in play after the rock you’re on, and the path of the rock that was thrown.</li>
     <li>Step with the arrow keys or the arrows under the video. On a phone, tap ‹ and ›, or swipe across the house.</li>
     <li>The video jumps to each rock as you step.</li>
-    <li>Change ends from the menu at the top. On a phone, tap the rock's name above the house.</li>
-    <li>A "?" is a rock the computer missed.</li>
-    <li>Report gives the score by end and each team's thinking time.</li>
+    <li>Change ends from the menu at the top. On a phone, tap the rock’s name above the house.</li>
+    <li>A “?” is a rock that couldn’t be tracked.</li>
+    <li>Report gives the score by end and each team’s thinking time.</li>
   </ul>
 
   <h2>How good is it?</h2>
-  <p>Close, not perfect. Stones in the house are placed from the overhead cameras. Guards are placed from the end cameras, which is harder: some are a foot or more out. Shot types are the computer's best guess.</p>
-  <p>Nothing here has been corrected by hand.</p>
+  <p>Close, but not perfect. Stones in the house are placed from the overhead cameras. Guards are placed from the end cameras, which is harder: some are a foot or more out. Shot types are a best guess from each rock’s path.</p>
+  <p>Nothing here has been corrected by hand. Feedback is welcome.</p>
 
   <h2>Where it comes from</h2>
-  <p>{site_name} is built on <a href="https://github.com/wdimmit/curling_stats">curling_stats</a>, the charting software Will Dimmit wrote for Granite Curling Club in Seattle and made public. A Rochester Curling Club member adapted it to the club's streams. This isn't an official club site.</p>
+  <p>{site_name} is built on <a href="https://github.com/wdimmit/curling_stats">curling_stats</a>, the charting software Will Dimmit wrote for Granite Curling Club in Seattle and made public. It was adapted for Rochester Curling Club’s streams. This isn’t an official club site.</p>
 
   <footer>
     Built on <a href="https://github.com/wdimmit/curling_stats">curling_stats</a> by Will Dimmit.
-    Code: <a href="https://github.com/CLBarajas/curling_stats/tree/rochester-ny">CLBarajas/curling_stats, branch rochester-ny</a>.
-    Built {built:%b} {built.day}, {built:%Y}.
+    Source: <a href="https://github.com/CLBarajas/curling_stats/tree/rochester-ny">CLBarajas/curling_stats, branch rochester-ny</a>.
+    Last updated: {built:%b} {built.day}, {built:%Y}.
   </footer>
 </main>
 </html>

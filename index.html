@@ -2,9 +2,9 @@
 <html lang="en">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>FifthSense · Rock-by-rock game tracker, via RCC&#x27;s live streams</title>
-<meta name="description" content="FifthSense: shot-by-shot charts of games at Rochester Curling Club, read by computer from the club's sheet streams.">
-<meta name="generator" content="curling_stats rochester-ny 33d5e87">
+<title>FifthSense · Rock-by-rock game tracker, via RCC’s live streams</title>
+<meta name="description" content="FifthSense: rock-by-rock charts of games at Rochester Curling Club, tracked by computer vision from the club’s live streams.">
+<meta name="generator" content="curling_stats rochester-ny 06d18f2">
 <style>
 @font-face { font-family: "Source Sans 3"; font-weight: 200 900; font-display: swap;
              src: url("viewer/source-sans-3.woff2") format("woff2"); }
@@ -57,70 +57,71 @@ footer a { color: inherit; }
 </style>
 <main>
   <h1>FifthSense</h1>
-  <p class="tagline">Rock-by-rock game tracker, via RCC&#x27;s live streams</p>
-  <p class="lede">A computer watched these games on Rochester Curling Club's sheet streams and charted every rock it could find: where each stone stopped, when it was thrown, and what kind of shot it was.</p>
+  <p class="tagline">Rock-by-rock game tracker, via RCC’s live streams</p>
+  <p class="lede">Using computer vision models customized for Rochester Curling Club’s cameras, FifthSense finds and tracks stones from the club’s live streams. Every rock tracked is charted: where it stopped, when it was thrown, and what kind of shot it most likely was.</p>
   <p>Pick a game. Step through it a rock at a time, with the stream beside it.</p>
+  <p class="note">Want a game tracked? Get in touch with Chris Barajas.</p>
 
   <ul class="games">
     <li><a class="game" href="2026-11-18-sheet-b/">
       <p class="when">Wed Nov 18 · Sheet B · Wednesday competitive</p>
       <p class="teams"><span class="team"><span class="stone red"></span>Bauman</span> <span class="v">v</span> <span class="team"><span class="stone yellow" style="--stone:#4d8ef0"></span>Ozarowsky</span> </p>
-      <p class="stats">6 ends · 96 of 96 rocks found</p>
+      <p class="stats">6 ends · 96 of 96 rocks tracked</p>
       <p class="note">A six-end game.</p>
     </a></li>
     <li><a class="game" href="2026-11-04-sheet-a/">
       <p class="when">Wed Nov 4 · Sheet A · Wednesday competitive</p>
       <p class="teams"><span class="team"><span class="stone red"></span>Bauman</span> <span class="v">v</span> <span class="team"><span class="stone yellow" style="--stone:#4d8ef0"></span>Pulli</span> </p>
-      <p class="stats">8 ends · 123 of 128 rocks found</p>
-      <p class="note">The stream stops five rocks before the end.</p>
+      <p class="stats">8 ends · 123 of 128 rocks tracked</p>
+      <p class="note">The stream stopped with five rocks left in the 8th end.</p>
     </a></li>
     <li><a class="game" href="2026-11-11-sheet-c/">
       <p class="when">Wed Nov 11 · Sheet C · Wednesday competitive</p>
       <p class="teams"><span class="team"><span class="stone red"></span>Lindstrom</span> <span class="v">v</span> <span class="team"><span class="stone yellow" style="--stone:#4d8ef0"></span>Bauman</span> </p>
-      <p class="stats">8 ends · 128 of 128 rocks found</p>
+      <p class="stats">8 ends · 128 of 128 rocks tracked</p>
       
     </a></li>
     <li><a class="game" href="2026-11-09-sheet-d/">
       <p class="when">Mon Nov 9 · Sheet D · Monday open</p>
       <p class="teams"><span class="team"><span class="stone red"></span>Red</span> <span class="v">v</span> <span class="team"><span class="stone yellow" style="--stone:#4d8ef0"></span>Blue</span> <span class="soon">team names to come</span></p>
-      <p class="stats">7 ends · 112 of 112 rocks found</p>
+      <p class="stats">7 ends · 112 of 112 rocks tracked</p>
       <p class="note">A seven-end game.</p>
     </a></li>
     <li><a class="game" href="2026-10-28-sheet-b/">
       <p class="when">Wed Oct 28 · Sheet B · Wednesday competitive</p>
       <p class="teams"><span class="team"><span class="stone red"></span>Maxon</span> <span class="v">v</span> <span class="team"><span class="stone yellow" style="--stone:#4d8ef0"></span>Bauman</span> </p>
-      <p class="stats">8 ends · 127 of 128 rocks found</p>
-      <p class="note">An older stream layout. The last rock was never thrown: the game was conceded.</p>
+      <p class="stats">8 ends · 127 of 128 rocks tracked</p>
+      <p class="note">The last rock was never thrown.</p>
     </a></li>
     <li><a class="game" href="2026-10-21-sheet-a/">
       <p class="when">Wed Oct 21 · Sheet A · Wednesday competitive</p>
       <p class="teams"><span class="team"><span class="stone red"></span>Bauman</span> <span class="v">v</span> <span class="team"><span class="stone yellow" style="--stone:#4d8ef0"></span>Calabrese</span> </p>
-      <p class="stats">6 ends · 96 of 96 rocks found</p>
+      <p class="stats">6 ends · 96 of 96 rocks tracked</p>
       
     </a></li>
   </ul>
 
   <h2>Reading a game</h2>
   <ul class="how">
-    <li>The house shows every stone in play after the rock you're on, and the path of the rock that was thrown.</li>
+    <li>The house shows every stone in play after the rock you’re on, and the path of the rock that was thrown.</li>
     <li>Step with the arrow keys or the arrows under the video. On a phone, tap ‹ and ›, or swipe across the house.</li>
     <li>The video jumps to each rock as you step.</li>
-    <li>Change ends from the menu at the top. On a phone, tap the rock's name above the house.</li>
-    <li>A "?" is a rock the computer missed.</li>
-    <li>Report gives the score by end and each team's thinking time.</li>
+    <li>Change ends from the menu at the top. On a phone, tap the rock’s name above the house.</li>
+    <li>A “?” is a rock that couldn’t be tracked.</li>
+    <li>Report gives the score by end and each team’s thinking time.</li>
   </ul>
 
   <h2>How good is it?</h2>
-  <p>Close, not perfect. Stones in the house are placed from the overhead cameras. Guards are placed from the end cameras, which is harder: some are a foot or more out. Shot types are the computer's best guess.</p>
-  <p>Nothing here has been corrected by hand.</p>
+  <p>Close, but not perfect. Stones in the house are placed from the overhead cameras. Guards are placed from the end cameras, which is harder: some are a foot or more out. Shot types are a best guess from each rock’s path.</p>
+  <p>Nothing here has been corrected by hand. Feedback is welcome.</p>
 
   <h2>Where it comes from</h2>
-  <p>FifthSense is built on <a href="https://github.com/wdimmit/curling_stats">curling_stats</a>, the charting software Will Dimmit wrote for Granite Curling Club in Seattle and made public. A Rochester Curling Club member adapted it to the club's streams. This isn't an official club site.</p>
+  <p>FifthSense is built on <a href="https://github.com/wdimmit/curling_stats">curling_stats</a>, the charting software Will Dimmit wrote for Granite Curling Club in Seattle and made public. It was adapted for Rochester Curling Club’s streams. This isn’t an official club site.</p>
 
   <footer>
     Built on <a href="https://github.com/wdimmit/curling_stats">curling_stats</a> by Will Dimmit.
-    Code: <a href="https://github.com/CLBarajas/curling_stats/tree/rochester-ny">CLBarajas/curling_stats, branch rochester-ny</a>.
-    Built Nov 19, 2026.
+    Source: <a href="https://github.com/CLBarajas/curling_stats/tree/rochester-ny">CLBarajas/curling_stats, branch rochester-ny</a>.
+    Last updated: Nov 20, 2026.
   </footer>
 </main>
 </html>
